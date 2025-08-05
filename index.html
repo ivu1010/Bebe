@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For My Love</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      max-width: 600px;
+      position: relative;
+    }
+
+    h1 {
+      color: #ff4e6b;
+      font-size: 2.5em;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    #toggle {
+      display: none;
+    }
+
+    .heart-label {
+      font-size: 50px;
+      color: #ff4e6b;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 20px;
+      animation: beat 1s infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .heart-label:hover {
+      transform: scale(1.2);
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+    }
+
+    .photos {
+      display: none;
+      margin-top: 30px;
+      animation: pop 0.5s ease;
+    }
+
+    .photos img {
+      width: 200px;
+      border-radius: 10px;
+      margin: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    #toggle:checked ~ .photos {
+      display: block;
+    }
+
+    @keyframes pop {
+      0% { transform: scale(0.7); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hi Love! 💖</h1>
+    <p>I just want you to know something very important...</p>
+    <p><strong>I LOVE YOU SO MUCH! ❤️</strong></p>
+
+    <!-- Heart Toggle -->
+    <input type="checkbox" id="toggle" onclick="playMusic()" />
+    <label for="toggle" class="heart-label">💗</label>
+
+    <!-- Audio File -->
+    <audio id="loveMusic" src="habang-buhay.mp3"></audio>
+
+    <!-- Photos -->
+    <div class="photos">
+      <p>Here are some of our favorite moments 💕</p>
+      <img src="25f8606a-944a-41cd-bdef-77f1b249b741.jpg" alt="Us together">
+      <img src="29dedc07-2891-46a9-8b60-7580d0b9ee11.jpg" alt="Hugging">
+    </div>
+  </div>
+
+  <script>
+    function playMusic() {
+      var audio = document.getElementById("loveMusic");
+      audio.play();
+    }
+  </script>
+</body>
+</html>
