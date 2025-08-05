@@ -61,9 +61,7 @@
     }
 
     .photos {
-      display: none;
       margin-top: 30px;
-      animation: pop 0.5s ease;
     }
 
     .photos img {
@@ -71,15 +69,12 @@
       border-radius: 10px;
       margin: 10px;
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
     }
 
-    #toggle:checked ~ .photos {
-      display: block;
-    }
-
-    @keyframes pop {
-      0% { transform: scale(0.7); opacity: 0; }
-      100% { transform: scale(1); opacity: 1; }
+    .photos img.visible {
+      opacity: 1;
     }
   </style>
 </head>
@@ -91,24 +86,43 @@
     <p><strong>-Yves</strong></p>
 
     <!-- Heart Toggle -->
-    <input type="checkbox" id="toggle" onclick="playMusic()" />
+    <input type="checkbox" id="toggle" onclick="revealPhotos(); playMusic()" />
     <label for="toggle" class="heart-label">💗</label>
 
     <!-- Audio File -->
     <audio id="loveMusic" src="habang-buhay.mp3"></audio>
 
     <!-- Photos -->
-    <div class="photos">
+    <div class="photos" id="photoContainer">
       <p>Here are some of our favorite moments 💕</p>
       <img src="25f8606a-944a-41cd-bdef-77f1b249b741.jpg" alt="Us together">
       <img src="29dedc07-2891-46a9-8b60-7580d0b9ee11.jpg" alt="Hugging">
+      <img src="7e5e6add-dd77-41df-a7de-511ab76bb010.jpg" alt="Candid">
+      <img src="69d53397-d879-4365-b86b-80c9c559bc97.jpg" alt="Laughing">
+      <img src="547da9e1-4d0f-4412-a112-6eb95c786038.jpg" alt="Sweet Moment">
+      <img src="e36571ed-9939-4389-a6b4-703dfd883e46.jpg" alt="Beach">
     </div>
   </div>
 
   <script>
     function playMusic() {
-      var audio = document.getElementById("loveMusic");
+      const audio = document.getElementById("loveMusic");
       audio.play();
+    }
+
+    function revealPhotos() {
+      const images = document.querySelectorAll(".photos img");
+      let i = 0;
+
+      function showNext() {
+        if (i < images.length) {
+          images[i].classList.add("visible");
+          i++;
+          setTimeout(showNext, 3000); // 3 seconds between each
+        }
+      }
+
+      showNext();
     }
   </script>
 </body>
