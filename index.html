@@ -4,17 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>For My Darling</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Quicksand', sans-serif;
       background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
     }
 
     .container {
@@ -22,8 +18,13 @@
       padding: 40px;
       border-radius: 20px;
       box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-      max-width: 600px;
+      max-width: 650px;
+      width: 90%;
+      margin: 100px auto;
       position: relative;
+      text-align: center;
+      z-index: 2;
+      transition: opacity 3s ease-in-out;
     }
 
     h1 {
@@ -61,7 +62,18 @@
     }
 
     .photos {
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
       margin-top: 30px;
+      text-align: center;
+    }
+
+    .photos h2 {
+      width: 100%;
+      font-size: 1.8em;
+      color: #ff4e6b;
+      margin-bottom: 20px;
     }
 
     .photos img {
@@ -76,43 +88,83 @@
     .photos img.visible {
       opacity: 1;
     }
+
+    /* Floating hearts */
+    .floating-heart {
+      position: fixed;
+      color: #ff4e6b99;
+      font-size: 24px;
+      animation: float 6s infinite ease-in-out;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(30px);
+        opacity: 0;
+      }
+    }
   </style>
 </head>
 <body>
-  <div class="container">
+
+  <!-- Floating hearts -->
+  <div class="floating-heart" style="left: 10%;">💗</div>
+  <div class="floating-heart" style="left: 50%;">💖</div>
+  <div class="floating-heart" style="left: 80%;">💕</div>
+
+  <div class="container" id="messageContainer">
     <h1>Hi Darling! 💖</h1>
     <p>I just want you to know something very important...</p>
-    <p>Always take care of yourself, kahit gaano ka pa ka-busy.
-        Go full force sa nursing — I believe in your strength and passion.
-        I’ll always be here, cheering you on, every step of the way. 💖</p>
+    <p>Always take care of yourself, kahit gaano ka pa ka-busy.<br>
+       Go full force sa nursing — I believe in your strength and passion.<br>
+       I’ll always be here, cheering you on, every step of the way. 💖</p>
     <p><strong>I LOVE YOU SO MUCH! ❤️</strong></p>
-   
     <p><strong>-Yves</strong></p>
 
     <!-- Heart Toggle -->
-    <input type="checkbox" id="toggle" onclick="revealPhotos(); playMusic()" />
-    <label for="toggle" class="heart-label">💗</label>
-    <p style="font-size: 1em; color: #ff4e6b; margin-top: 10px;">Click my heart 💗</p>
+    <input type="checkbox" id="toggle" onclick="triggerLove()" />
+    <label for="toggle" class="heart-label">💗<br><span style="font-size: 0.5em;">Click my heart</span></label>
+  </div>
 
-    <!-- Audio File -->
-    <audio id="loveMusic" src="habang-buhay.mp3"></audio>
+  <!-- Audio File -->
+  <audio id="loveMusic" src="habang-buhay.mp3"></audio>
 
-    <!-- Photos -->
-    <div class="photos" id="photoContainer">
-      <p>Here are some of our favorite moments 💕</p>
-      <img src="25f8606a-944a-41cd-bdef-77f1b249b741.jpg" alt="Us together">
-      <img src="29dedc07-2891-46a9-8b60-7580d0b9ee11.jpg" alt="Hugging">
-      <img src="7e5e6add-dd77-41df-a7de-511ab76bb010.jpg" alt="Candid">
-      <img src="69d53397-d879-4365-b86b-80c9c559bc97.jpg" alt="Laughing">
-      <img src="547da9e1-4d0f-4412-a112-6eb95c786038.jpg" alt="Sweet Moment">
-      <img src="e36571ed-9939-4389-a6b4-703dfd883e46.jpg" alt="Beach">
-    </div>
+  <!-- Photos Section -->
+  <div class="photos" id="photoContainer">
+    <h2>Our Sweetest Moments 💞</h2>
+    <img src="25f8606a-944a-41cd-bdef-77f1b249b741.jpg" alt="Us together">
+    <img src="29dedc07-2891-46a9-8b60-7580d0b9ee11.jpg" alt="Hugging">
+    <img src="7e5e6add-dd77-41df-a7de-511ab76bb010.jpg" alt="Candid">
+    <img src="69d53397-d879-4365-b86b-80c9c559bc97.jpg" alt="Laughing">
+    <img src="547da9e1-4d0f-4412-a112-6eb95c786038.jpg" alt="Sweet Moment">
+    <img src="e36571ed-9939-4389-a6b4-703dfd883e46.jpg" alt="Beach">
   </div>
 
   <script>
+    function triggerLove() {
+      playMusic();
+      fadeOutMessage();
+      revealPhotos();
+    }
+
     function playMusic() {
       const audio = document.getElementById("loveMusic");
       audio.play();
+    }
+
+    function fadeOutMessage() {
+      const container = document.getElementById("messageContainer");
+      container.style.opacity = "0";
+      setTimeout(() => {
+        container.style.display = "none";
+        document.getElementById("photoContainer").style.display = "flex";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 3000); // 3-second fade
     }
 
     function revealPhotos() {
@@ -127,7 +179,10 @@
         }
       }
 
-      showNext();
+      // Wait for message to disappear before showing images
+      setTimeout(() => {
+        showNext();
+      }, 3000);
     }
   </script>
 </body>
