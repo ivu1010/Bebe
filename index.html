@@ -118,6 +118,37 @@
         opacity: 0;
       }
     }
+
+    .special-message {
+      display: none;
+      text-align: center;
+      margin-top: 50px;
+      font-size: 1.5em;
+      color: #d6336c;
+      animation: fadeIn 2s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .replay-btn {
+      display: none;
+      margin: 40px auto 60px;
+      padding: 12px 24px;
+      background-color: #ff4e6b;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .replay-btn:hover {
+      background-color: #e63956;
+    }
   </style>
 </head>
 <body>
@@ -150,6 +181,9 @@
     <div class="photo-frame"><img src="e36571ed-9939-4389-a6b4-703dfd883e46.jpg" alt="Beach"></div>
   </div>
 
+  <div class="special-message" id="specialMessage">Ikaw lang ang mahal na mahal ko baby ko. 💗</div>
+  <button class="replay-btn" id="replayBtn" onclick="replayLove()">Replay 💞</button>
+
   <script>
     function triggerLove() {
       playMusic();
@@ -159,6 +193,7 @@
 
     function playMusic() {
       const audio = document.getElementById("loveMusic");
+      audio.currentTime = 0;
       audio.play();
     }
 
@@ -208,12 +243,27 @@
 
           i++;
           setTimeout(showNext, 3000);
+        } else {
+          document.getElementById("specialMessage").style.display = "block";
+          document.getElementById("replayBtn").style.display = "block";
         }
       }
 
       setTimeout(() => {
         showNext();
       }, 3000);
+    }
+
+    function replayLove() {
+      document.getElementById("photoContainer").style.display = "none";
+      document.getElementById("specialMessage").style.display = "none";
+      document.getElementById("replayBtn").style.display = "none";
+      const frames = document.querySelectorAll(".photo-frame");
+      frames.forEach(frame => frame.classList.remove("visible"));
+      const container = document.getElementById("messageContainer");
+      container.style.display = "block";
+      container.style.opacity = "1";
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
 </body>
