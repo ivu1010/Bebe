@@ -3,58 +3,90 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>For My Love 💖</title>
+  <title>For My Darling</title>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: "Comic Sans MS", cursive, sans-serif;
       margin: 0;
       padding: 0;
-      background: linear-gradient(to bottom, #ffe0f0, #fff);
-      overflow-x: hidden;
+      font-family: 'Quicksand', sans-serif;
+      background: linear-gradient(to bottom right, #ff9a9e, #fad0c4);
     }
 
-    header {
+    .container {
+      background: white;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      max-width: 650px;
+      width: 90%;
+      margin: 100px auto;
+      position: relative;
       text-align: center;
-      padding: 2rem;
-      background: #ffb6c1;
-      color: white;
+      z-index: 2;
+      transition: opacity 3s ease-in-out;
     }
 
-    header h1 {
-      font-size: 2.5rem;
-      margin: 0;
+    h1 {
+      color: #ff4e6b;
+      font-size: 2.5em;
+      margin-bottom: 10px;
     }
 
-    .message {
-      text-align: center;
-      font-size: 1.5rem;
-      margin: 2rem auto;
-      max-width: 90%;
-      background-color: #fff0f5;
-      padding: 1rem 2rem;
-      border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(255, 182, 193, 0.4);
-      transition: opacity 1s ease;
+    p {
+      font-size: 1.2em;
+      color: #555;
+    }
+
+    #toggle {
+      display: none;
+    }
+
+    .heart-label {
+      font-size: 50px;
+      color: #ff4e6b;
+      cursor: pointer;
+      display: inline-block;
+      margin-top: 20px;
+      animation: beat 1s infinite;
+      transition: transform 0.3s ease;
+    }
+
+    .heart-label:hover {
+      transform: scale(1.2);
+    }
+
+    @keyframes beat {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.2); }
     }
 
     .photos {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin-bottom: 5rem;
+      display: none;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .photos h2 {
+      width: 100%;
+      font-size: 1.8em;
+      color: #ff4e6b;
+      margin-bottom: 20px;
     }
 
     .photo-frame {
-      width: 300px;
-      padding: 1rem;
-      margin: 2rem auto;
-      background: white;
-      border: 8px solid #ffb6c1;
+      background: #ffe4ec;
+      border: 3px solid #ffb6c1;
       border-radius: 20px;
-      box-shadow: 0 0 15px rgba(255, 182, 193, 0.6);
+      padding: 15px;
+      margin: 10px;
+      box-shadow: 0 8px 16px rgba(255, 105, 135, 0.2);
       opacity: 0;
+      transition: opacity 1s ease-in-out, transform 0.5s ease;
+      display: inline-block;
       transform: scale(0.95);
-      transition: opacity 1s ease, transform 0.5s ease;
     }
 
     .photo-frame.visible {
@@ -63,71 +95,84 @@
     }
 
     .photo-frame img {
-      width: 100%;
-      height: auto;
-      border-radius: 12px;
+      width: 200px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .heart {
-      font-size: 3rem;
-      text-align: center;
-      cursor: pointer;
-      animation: bounce 2s infinite;
-      user-select: none;
-    }
-
-    @keyframes bounce {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.2); }
-    }
-
-    #backToStart {
+    .floating-heart {
       position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #ff69b4;
-      color: white;
-      border: none;
-      padding: 10px 15px;
-      border-radius: 30px;
-      font-size: 1rem;
-      cursor: pointer;
-      box-shadow: 0 0 10px rgba(255,105,180,0.5);
+      color: #ff4e6b99;
+      font-size: 24px;
+      animation: float 6s infinite ease-in-out;
+      z-index: 0;
     }
 
-    audio {
-      display: block;
-      margin: 1rem auto;
+    @keyframes float {
+      0% {
+        transform: translateY(0) translateX(0);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(30px);
+        opacity: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <header>
-    <h1>To the Love of My Life 💕</h1>
-    <div class="heart" onclick="alert('I love you more each day 💗')">❤️</div>
-  </header>
+  <div class="floating-heart" style="left: 10%;">💗</div>
+  <div class="floating-heart" style="left: 50%;">💖</div>
+  <div class="floating-heart" style="left: 80%;">💕</div>
 
-  <div class="message" id="message">
-    Hey babe, I made this for you. Slowly scroll down as our memories appear one by one 💞
+  <div class="container" id="messageContainer">
+    <h1>Hi Darling! 💖</h1>
+    <p>I just want you to know something very important...</p>
+    <p>Always take care of yourself, kahit gaano ka pa ka-busy.<br>
+       Go full force sa nursing — I believe in your strength and passion.<br>
+       I’ll always be here, cheering you on, every step of the way. 💖</p>
+    <p><strong>I LOVE YOU SO MUCH! ❤️</strong></p>
+    <p><strong>-Yves</strong></p>
+
+    <input type="checkbox" id="toggle" onclick="triggerLove()" />
+    <label for="toggle" class="heart-label">💗<br><span style="font-size: 0.5em;">Click my heart</span></label>
   </div>
 
-  <audio autoplay controls loop>
-    <source src="habang-buhay.mp3" type="audio/mpeg" />
-    Your browser does not support the audio element.
-  </audio>
+  <audio id="loveMusic" src="habang-buhay.mp3"></audio>
 
-  <div class="photos" id="photos">
-    <div class="photo-frame"><img src="photo1.jpg" alt="Photo 1" /></div>
-    <div class="photo-frame"><img src="photo2.jpg" alt="Photo 2" /></div>
-    <div class="photo-frame"><img src="photo3.jpg" alt="Photo 3" /></div>
-    <div class="photo-frame"><img src="photo4.jpg" alt="Photo 4" /></div>
-    <!-- Add more frames as needed -->
+  <div class="photos" id="photoContainer">
+    <h2>Our Sweetest Moments 💞</h2>
+    <div class="photo-frame"><img src="25f8606a-944a-41cd-bdef-77f1b249b741.jpg" alt="Us together"></div>
+    <div class="photo-frame"><img src="29dedc07-2891-46a9-8b60-7580d0b9ee11.jpg" alt="Hugging"></div>
+    <div class="photo-frame"><img src="7e5e6add-dd77-41df-a7de-511ab76bb010.jpg" alt="Candid"></div>
+    <div class="photo-frame"><img src="69d53397-d879-4365-b86b-80c9c559bc97.jpg" alt="Laughing"></div>
+    <div class="photo-frame"><img src="547da9e1-4d0f-4412-a112-6eb95c786038.jpg" alt="Sweet Moment"></div>
+    <div class="photo-frame"><img src="e36571ed-9939-4389-a6b4-703dfd883e46.jpg" alt="Beach"></div>
   </div>
-
-  <button id="backToStart">⬆ Back to Start</button>
 
   <script>
-    function smoothScrollTo(targetY, duration = 1500) {
+    function triggerLove() {
+      playMusic();
+      fadeOutMessage();
+      revealPhotos();
+    }
+
+    function playMusic() {
+      const audio = document.getElementById("loveMusic");
+      audio.play();
+    }
+
+    function fadeOutMessage() {
+      const container = document.getElementById("messageContainer");
+      container.style.opacity = "0";
+      setTimeout(() => {
+        container.style.display = "none";
+        document.getElementById("photoContainer").style.display = "flex";
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, 3000);
+    }
+
+    function smoothScrollTo(targetY, duration = 2000) {
       const startY = window.scrollY;
       const distance = targetY - startY;
       const startTime = performance.now();
@@ -135,9 +180,7 @@
       function scrollStep(currentTime) {
         const timeElapsed = currentTime - startTime;
         const progress = Math.min(timeElapsed / duration, 1);
-        const ease = progress < 0.5
-          ? 2 * progress * progress
-          : -1 + (4 - 2 * progress) * progress;
+        const ease = progress < 0.5 ? 2 * progress * progress : -1 + (4 - 2 * progress) * progress;
 
         window.scrollTo(0, startY + distance * ease);
 
@@ -158,30 +201,20 @@
           const frame = frames[i];
           frame.classList.add("visible");
 
-          // Slow smooth scroll to the current frame
           setTimeout(() => {
             const y = frame.getBoundingClientRect().top + window.scrollY - 100;
             smoothScrollTo(y, 2000);
           }, 300);
 
           i++;
-          setTimeout(showNext, 3000); // next photo in 3s
+          setTimeout(showNext, 3000);
         }
       }
 
-      // Wait 3s for the message before showing images
       setTimeout(() => {
-        document.getElementById("message").style.opacity = 0;
-        setTimeout(showNext, 1000);
+        showNext();
       }, 3000);
     }
-
-    revealPhotos();
-
-    // Back to Start (no music reset)
-    document.getElementById("backToStart").addEventListener("click", () => {
-      smoothScrollTo(0, 1500);
-    });
   </script>
 </body>
 </html>
